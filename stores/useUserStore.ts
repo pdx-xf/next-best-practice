@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 type UserStoreType = {
@@ -11,32 +11,44 @@ type UserStoreType = {
 
 export const useUserStore = create<UserStoreType>()(
   devtools(
-    immer((set) => ({
-      name: "张三",
-      setName: () => {
-        set(
-          (state) => {
-            if (state.name == "张三") {
-              state.name = "李四";
-            } else {
-              state.name = "张三";
-            }
-          },
-          undefined,
-          "user/setName",
-        );
-      },
-      age: 12,
-      setAge: () => {
-        set(
-          (state) => {
-            ++state.age;
-          },
-          undefined,
-          "user/setAge",
-        );
-      },
-    })),
+    persist(
+      immer((set) => ({
+        name: "张三",
+        setName: () => {
+          set(
+            (state) => {
+              if (state.name == "张三") {
+                state.name = "李四";
+              } else {
+                state.name = "张三";
+              }
+            },
+            undefined,
+            "user/setName",
+          );
+        },
+        age: 12,
+        setAge: () => {
+          set(
+            (state) => {
+              ++state.age;
+            },
+            undefined,
+            "user/setAge",
+          );
+        },
+      })),
+      { name: "user-storage" },
+    ),
     { name: "userStore" },
   ),
 );
+
+export const subscribeUser = () => {
+  const unsubscribe = useUserStore.subscribe((state, prevState) => {
+    console.log(state, prevState);
+    return state;
+  });
+
+  return unsubscribe;
+};
