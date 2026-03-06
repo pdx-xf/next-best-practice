@@ -39,6 +39,7 @@ const publishedAtSchema = z.preprocess((value) => {
 export const blogListQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(MAX_PAGE_SIZE).default(10),
+  slug: z.string().optional().default("").transform(trimString),
   search: z.string().optional().default("").transform(trimString),
   tag: z.string().optional().default("").transform(trimString),
   status: z.preprocess((value) => {

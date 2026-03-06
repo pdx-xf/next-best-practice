@@ -9,7 +9,9 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export const dynamic = "force-dynamic";
 
-type BlogListItem = Awaited<ReturnType<typeof prisma.blog.findMany>>[number];
+export type BlogListItem = Awaited<
+  ReturnType<typeof prisma.blog.findMany>
+>[number];
 
 function jsonError(status: number, code: string, message: string) {
   const payload: ApiErrorResponse = {
@@ -36,9 +38,10 @@ export async function GET(request: Request) {
     );
   }
 
-  const { page, pageSize, search, tag, status } = queryParse.data;
+  const { page, pageSize, search, tag, status, slug } = queryParse.data;
 
   const where = {
+    ...(slug ? { slug } : {}),
     ...(status ? { status } : {}),
     ...(tag ? { tags: { has: tag } } : {}),
     ...(search

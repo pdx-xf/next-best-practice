@@ -2,12 +2,12 @@ import { useThemeStore } from "@/stores/useThemeStore";
 import React, { createContext, FC, useContext } from "react";
 import { useShallow } from "zustand/shallow";
 
-type ThemeContextType = {
+type ThemeContextValue = {
   theme: string;
   switchTheme: () => void;
-} | null;
+};
 
-const ThemeContext = createContext<ThemeContextType>(null);
+const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const ThemeContextProvider: FC<{ children: React.ReactNode }> = ({
   children,
@@ -27,7 +27,13 @@ const ThemeContextProvider: FC<{ children: React.ReactNode }> = ({
 };
 
 export const useThemeContext = () => {
-  return useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error("useThemeContext must be used within ThemeContextProvider");
+  }
+
+  return context;
 };
 
 export default ThemeContextProvider;

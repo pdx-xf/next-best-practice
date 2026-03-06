@@ -3,6 +3,8 @@ import { blogPatchSchema, slugify } from "@/lib/validation/blog";
 
 export const dynamic = "force-dynamic";
 
+type RouteContext = { params: Promise<{ id: string }> };
+
 function jsonError(status: number, code: string, message: string) {
   return Response.json(
     {
@@ -15,11 +17,8 @@ function jsonError(status: number, code: string, message: string) {
   );
 }
 
-export async function GET(
-  _request: Request,
-  context: { params: { id: string } },
-) {
-  const { id } = context.params;
+export async function GET(_request: Request, context: RouteContext) {
+  const { id } = await context.params;
   const data = await prisma.blog.findUnique({ where: { id } });
 
   if (!data) {
@@ -29,11 +28,8 @@ export async function GET(
   return Response.json({ data });
 }
 
-export async function PATCH(
-  request: Request,
-  context: { params: { id: string } },
-) {
-  const { id } = context.params;
+export async function PATCH(request: Request, context: RouteContext) {
+  const { id } = await context.params;
   let rawPayload: unknown;
 
   try {
@@ -122,11 +118,8 @@ export async function PATCH(
   return Response.json({ data: updated });
 }
 
-export async function DELETE(
-  _request: Request,
-  context: { params: { id: string } },
-) {
-  const { id } = context.params;
+export async function DELETE(_request: Request, context: RouteContext) {
+  const { id } = await context.params;
 
   const existing = await prisma.blog.findUnique({ where: { id } });
   if (!existing) {
