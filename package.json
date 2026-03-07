@@ -10,8 +10,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@better-auth/infra": "^0.1.8",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
+    "better-auth": "^1.5.4",
     "dotenv": "^17.3.1",
     "immer": "^11.1.4",
     "next": "16.1.6",
