@@ -19,7 +19,9 @@ export default function SignIn() {
   const router = useRouter();
   const [form, setForm] = useState<SignInForm>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isGithubSubmitting, setIsGithubSubmitting] = useState(false);
+  const [socialProviderLoading, setSocialProviderLoading] = useState<
+    "github" | "google" | null
+  >(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -48,23 +50,27 @@ export default function SignIn() {
     }
   };
 
-  const onGithubSignIn = async () => {
+  const onSocialSignIn = async (provider: "github" | "google") => {
     setErrorMessage("");
-    setIsGithubSubmitting(true);
+    setSocialProviderLoading(provider);
+
+    const providerLabel = provider === "github" ? "GitHub" : "Google";
 
     try {
       const result = await authClient.signIn.social({
-        provider: "github",
+        provider,
         callbackURL: "/",
       });
 
       if (result.error) {
-        setErrorMessage(result.error.message || "GitHub 登录失败，请稍后重试。");
+        setErrorMessage(
+          result.error.message || `${providerLabel} 登录失败，请稍后重试。`,
+        );
       }
     } catch {
-      setErrorMessage("GitHub 登录失败，请稍后重试。");
+      setErrorMessage(`${providerLabel} 登录失败，请稍后重试。`);
     } finally {
-      setIsGithubSubmitting(false);
+      setSocialProviderLoading(null);
     }
   };
 
@@ -74,14 +80,29 @@ export default function SignIn() {
         <h1 className="text-2xl font-semibold text-zinc-900">登录账号</h1>
         <p className="mt-2 text-sm text-zinc-600">使用邮箱和密码登录。</p>
 
-        <button
-          type="button"
-          onClick={onGithubSignIn}
-          disabled={isSubmitting || isGithubSubmitting}
-          className="mt-6 w-full rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {isGithubSubmitting ? "跳转 GitHub 中..." : "使用 GitHub 登录"}
-        </button>
+        <div className="mt-6 space-y-3">
+          <button
+            type="button"
+            onClick={() => onSocialSignIn("github")}
+            disabled={isSubmitting || socialProviderLoading !== null}
+            className="w-full rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {socialProviderLoading === "github"
+              ? "跳转 GitHub 中..."
+              : "使用 GitHub 登录"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onSocialSignIn("google")}
+            disabled={isSubmitting || socialProviderLoading !== null}
+            className="w-full rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {socialProviderLoading === "google"
+              ? "跳转 Google 中..."
+              : "使用 Google 登录"}
+          </button>
+        </div>
 
         <div className="my-4 flex items-center gap-3">
           <span className="h-px flex-1 bg-zinc-200" />
@@ -133,7 +154,7 @@ export default function SignIn() {
 
           <button
             type="submit"
-            disabled={isSubmitting || isGithubSubmitting}
+            disabled={isSubmitting || socialProviderLoading !== null}
             className="w-full rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "登录中..." : "登录"}
