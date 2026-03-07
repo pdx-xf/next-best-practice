@@ -11,7 +11,7 @@ function jsonError(status: number, code: string, message: string) {
         message,
       },
     },
-    { status }
+    { status },
   );
 }
 
