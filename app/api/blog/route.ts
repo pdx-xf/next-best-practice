@@ -5,7 +5,7 @@ import {
   slugify,
 } from "@/lib/validation/blog";
 import type { ApiErrorResponse, ApiListResponse } from "@/lib/types/api";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/client";
 
 export const dynamic = "force-dynamic";
 
