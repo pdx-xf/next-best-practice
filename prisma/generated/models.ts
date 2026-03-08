@@ -8,7 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Blog'
+export type * from './models/blog'
 export type * from './models/account'
 export type * from './models/session'
 export type * from './models/user'

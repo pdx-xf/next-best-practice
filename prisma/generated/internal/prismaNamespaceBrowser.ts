@@ -51,7 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Blog: 'Blog',
+  blog: 'blog',
   account: 'account',
   session: 'session',
   user: 'user',

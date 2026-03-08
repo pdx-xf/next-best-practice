@@ -384,7 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Blog: 'Blog',
+  blog: 'blog',
   account: 'account',
   session: 'session',
   user: 'user',
@@ -408,76 +408,76 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Blog: {
-      payload: Prisma.$BlogPayload<ExtArgs>
-      fields: Prisma.BlogFieldRefs
+    blog: {
+      payload: Prisma.$blogPayload<ExtArgs>
+      fields: Prisma.blogFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.BlogFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload> | null
+          args: Prisma.blogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.BlogFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         findFirst: {
-          args: Prisma.BlogFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload> | null
+          args: Prisma.blogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.BlogFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         findMany: {
-          args: Prisma.BlogFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          args: Prisma.blogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>[]
         }
         create: {
-          args: Prisma.BlogCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         createMany: {
-          args: Prisma.BlogCreateManyArgs<ExtArgs>
+          args: Prisma.blogCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.BlogCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          args: Prisma.blogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>[]
         }
         delete: {
-          args: Prisma.BlogDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         update: {
-          args: Prisma.BlogUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         deleteMany: {
-          args: Prisma.BlogDeleteManyArgs<ExtArgs>
+          args: Prisma.blogDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.BlogUpdateManyArgs<ExtArgs>
+          args: Prisma.blogUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.BlogUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          args: Prisma.blogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>[]
         }
         upsert: {
-          args: Prisma.BlogUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPayload>
+          args: Prisma.blogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$blogPayload>
         }
         aggregate: {
           args: Prisma.BlogAggregateArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AggregateBlog>
         }
         groupBy: {
-          args: Prisma.BlogGroupByArgs<ExtArgs>
+          args: Prisma.blogGroupByArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BlogGroupByOutputType>[]
         }
         count: {
-          args: Prisma.BlogCountArgs<ExtArgs>
+          args: Prisma.blogCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BlogCountAggregateOutputType> | number
         }
       }
@@ -1079,7 +1079,7 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  blog?: Prisma.BlogOmit
+  blog?: Prisma.blogOmit
   account?: Prisma.accountOmit
   session?: Prisma.sessionOmit
   user?: Prisma.userOmit

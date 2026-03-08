@@ -34,7 +34,7 @@ export default function SignIn() {
       const result = await authClient.signIn.email({
         email: form.email,
         password: form.password,
-        callbackURL: "/",
+        callbackURL: "/admin/dashboard",
       });
 
       if (result.error) {
@@ -42,7 +42,7 @@ export default function SignIn() {
         return;
       }
 
-      router.push("/");
+      router.push("/admin/dashboard");
       router.refresh();
     } catch {
       setErrorMessage("登录失败，请稍后重试。");
@@ -60,7 +60,7 @@ export default function SignIn() {
     try {
       const result = await authClient.signIn.social({
         provider,
-        callbackURL: "/",
+        callbackURL: "/admin/dashboard",
       });
 
       if (result.error) {

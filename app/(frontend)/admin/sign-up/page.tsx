@@ -52,7 +52,7 @@ export default function SignUp() {
         name: form.name,
         email: form.email,
         password: form.password,
-        callbackURL: "/",
+        callbackURL: "/admin/dashboard",
       });
 
       if (result.error) {
@@ -61,7 +61,7 @@ export default function SignUp() {
       }
 
       setSuccessMessage("注册成功，正在跳转...");
-      router.push("/");
+      router.push("/admin/dashboard");
       router.refresh();
     } catch {
       setErrorMessage("注册失败，请稍后重试。");
@@ -80,7 +80,7 @@ export default function SignUp() {
     try {
       const result = await authClient.signIn.social({
         provider,
-        callbackURL: "/",
+        callbackURL: "/admin/dashboard",
       });
 
       if (result.error) {
