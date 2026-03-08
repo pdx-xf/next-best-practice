@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Icon } from "@iconify/react";
 import { authClient } from "@/lib/auth-client";
 
 type SignInForm = {
@@ -85,8 +86,9 @@ export default function SignIn() {
             type="button"
             onClick={() => onSocialSignIn("github")}
             disabled={isSubmitting || socialProviderLoading !== null}
-            className="w-full rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
           >
+            <Icon icon="mdi:github" className="h-4 w-4" />
             {socialProviderLoading === "github"
               ? "跳转 GitHub 中..."
               : "使用 GitHub 登录"}
@@ -96,8 +98,9 @@ export default function SignIn() {
             type="button"
             onClick={() => onSocialSignIn("google")}
             disabled={isSubmitting || socialProviderLoading !== null}
-            className="w-full rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
           >
+            <Icon icon="logos:google-icon" className="h-4 w-4" />
             {socialProviderLoading === "google"
               ? "跳转 Google 中..."
               : "使用 Google 登录"}

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@better-auth/infra": "^0.1.8",
+    "@iconify/react": "^6.0.2",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
     "better-auth": "^1.5.4",
